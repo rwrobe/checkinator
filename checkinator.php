@@ -11,7 +11,7 @@
  */
 
 
-namespace notne\Checkinator;
+namespace notne;
 
 
 /** Set plugin constants */

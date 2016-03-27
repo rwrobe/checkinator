@@ -22,6 +22,7 @@ if( ! class_exists( 'Page_Makinator' ) ) :
 
 			add_action( 'admin_init', array( &$this, 'init' ) );
 			add_action( 'admin_notices', array( &$this, 'admin_notices' ) );
+			add_action( 'wp_enqueue_scripts', array( &$this, 'enqueue_stuff' ) );
 
 			add_filter( 'template_include', array( &$this, 'set_template' ) );
 
@@ -115,6 +116,24 @@ if( ! class_exists( 'Page_Makinator' ) ) :
 			return $template;
 		}
 
+		/**
+		 * Enqueue scripts for the form template
+		 */
+		public function enqueue_stuff() {
+			global $post;
+
+			if( ! get_page_by_path( $this->slug ) )
+				return;
+
+			wp_enqueue_style( 'ctr-style', CTR_BASE_DIR . '/assets/css/ctr-style.css', false );
+
+			wp_enqueue_script( 'ctr-validation', CTR_BASE_DIR . '/vendor/js/jquery.validate.min.js', array( 'jquery' ), '1.9.0' );
+			wp_enqueue_script( 'ctr-functinos', CTR_BASE_DIR . '/assets/js/ctr-functions.js', array( 'jquery' ), '1.0' );
+		}
+
+		/**
+		 * Clean up after ourselves
+		 */
 		public function tear_down(){
 			delete_user_meta( $this->uid, 'ctr_create_page' );
 		}

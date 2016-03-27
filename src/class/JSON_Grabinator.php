@@ -36,7 +36,7 @@ if( ! class_exists( 'JSON_Grabinator' ) ) :
 
 			if ( $json ) {
 				$personnel_decode = json_decode( $json, true );
-				update_option( 'personnel_list', $personnel_decode );
+				update_option( 'ctr_personnel_list', $personnel_decode );
 			} else {
 				$this->warning_msg = esc_attr__( 'Your server does not support or allow CURL, so Checkinator was deactivated.', $this->textdomain );
 			}
@@ -47,7 +47,7 @@ if( ! class_exists( 'JSON_Grabinator' ) ) :
 		 */
 		public function tear_down() {
 			/** Erase the wp_options string */
-			update_option( 'personnel_list', '' );
+			update_option( 'ctr_personnel_list', '' );
 			/** Clear admin notice meta */
 		}
 
