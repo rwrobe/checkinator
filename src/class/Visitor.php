@@ -84,7 +84,6 @@ if( ! class_exists( 'Visitor' ) ) :
 			//and flush the rules.
 			flush_rewrite_rules();
 		}
-
 	}
 
 	$vtl = new Visitor();

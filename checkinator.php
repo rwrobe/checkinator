@@ -27,3 +27,4 @@ if ( ! defined( 'CTR_PLUGIN_PATH' ) )
 /** Require the plugin classes */
 require_once( 'src/class/Visitor.php' );
 require_once( 'src/class/JSON_Grabinator.php' );
+require_once( 'src/class/Page_Makinator.php' );
