@@ -25,8 +25,16 @@ if ( ! defined( 'CTR_PLUGIN_PATH' ) )
 	define( 'CTR_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 
 /** Require the plugin classes */
-require_once( 'src/class/Visitor.php' );
-require_once( 'src/class/JSON_Grabinator.php' );
-require_once( 'src/class/Page_Makinator.php' );
-require_once( 'checkinator-admin.php' );
-require_once( 'src/utility.php' );
+require_once( 'src/class/Visitor.php' ); // Create the visitor CPT
+require_once( 'src/class/JSON_Grabinator.php' ); // Decode the JSON and save it in wp_options
+require_once( 'src/class/Page_Makinator.php' ); // Create the /visit/ page on activation including template/JS
+require_once( 'checkinator-admin.php' ); // The admin log
+require_once( 'src/utility.php' ); // Form processing and cron job
+
+/**
+ * Remaining tasks:
+ * @todo: Style the form better
+ * @todo: Style the backend log
+ * @todo: Make form submit via AJAX, and have messages appear using JS vs. PHP
+ * @todo:
+ */

@@ -60,13 +60,15 @@ get_header(); ?>
 
 </form>
 
-<div class="success-message<?php echo $desk ? '' : ' hide'; ?>">
-	<h2><?php if( $desk) {
-			printf( __( 'Please proceed to desk %s.', 'checkinator' ),
+<?php if( $desk && 'error' != $desk ) { ?>
+<div class="success-message">
+	<h2><?php printf( __( 'Please proceed to desk %s.', 'checkinator' ),
 				$desk
-			);
-		}?></h2>
+			); ?></h2>
 </div>
-
-
+<?php } else if( $desk ) { ?>
+	<div class="error-message">
+		<h2><?php _e( "I'm sorry, but you can only check in twice per day. Please come back tomorrow.", 'checkinator' ); ?></h2>
+	</div>
+<?php } ?>
 <?php get_footer(); ?>

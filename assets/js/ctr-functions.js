@@ -1,6 +1,6 @@
 ;var Checkinator = (function($){
 
-    var $form = jQuery(document.getElementById('check-in'));
+    var $form = $(document.getElementById('check-in'));
 
     var init = function(){
         /** Add validation */
@@ -30,6 +30,16 @@
                 lastName: "Please enter a valid last name",
             }
         });
+
+        /** Redirect on success/error */
+        var $success = $(document.getElementsByClassName('success-message')),
+            $error = jQuery(document.getElementsByClassName('error-message'));
+
+        if( $success.length > 0 || $error.length > 0 ){
+            window.setTimeout(function(){
+                window.location = window.location.href;
+            }, 5000);
+        }
     };
 
     return {
