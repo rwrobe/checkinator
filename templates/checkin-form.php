@@ -21,8 +21,9 @@ if( ! is_user_logged_in() ) {
 
 /** @var array  The list of personnel loaded from JSON */
 $personnel_arr = get_option( 'personnel_list' ) ? get_option( 'personnel_list' ) : array();
-/** @var bool $desk  If POST was successful, hide the form and display the success message. */
+/** @var WP_Post|WP_Error|bool $desk  If POST was successful, hide the form and display the success message. */
 $desk = ctr_process_form( $personnel_arr );
+
 get_header(); ?>
 <form action="" id="check-in" method="POST"<?php echo $desk ? ' class="hide"' : ''; ?> novalidate="novalidate">
 
