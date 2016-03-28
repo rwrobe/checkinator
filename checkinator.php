@@ -36,5 +36,6 @@ require_once( 'src/utility.php' ); // Form processing and cron job
  * @todo: Style the form better
  * @todo: Style the backend log
  * @todo: Make form submit via AJAX, and have messages appear using JS vs. PHP
- * @todo:
+ * @todo: Implement a PDR redirect (instead of currently reloading the page) @see https://en.wikipedia.org/wiki/Post/Redirect/Get
+ * @todo: Create tests
  */
