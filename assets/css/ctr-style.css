@@ -49,3 +49,8 @@
     font-size: 16px;
     margin: 1.5em 0;
 }
+@media screen and (max-width: 600px ) {
+    #check-in, .error-message, .success-message {
+        margin: 3em 2%;
+    }
+}
