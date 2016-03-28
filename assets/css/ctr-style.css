@@ -1,0 +1,40 @@
+.hide {
+    display: none;
+}
+#check-in {
+    max-width: 600px;
+    margin: 0 auto;
+}
+#check-in fieldset {
+    border: none;
+}
+#first, #last {
+    width: 48%;
+    margin-right: 2%;
+    float: left;
+}
+#last {
+    margin-right: 0;
+    margin-left: 2%;
+}
+#last::after{
+    display: table;
+    clear: both;
+}
+#desk {
+    width: 100%;
+}
+#desk label {
+    display: block;
+    margin-bottom: 1.5em;
+}
+#desk select {
+    padding: 0.75em;
+}
+.success-message {
+    max-width: 600px;
+    margin: 3em auto;
+    border: 2px solid #008130;
+    background: #a4ff9b;
+    padding: 1.5em;
+}

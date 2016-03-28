@@ -28,3 +28,5 @@ if ( ! defined( 'CTR_PLUGIN_PATH' ) )
 require_once( 'src/class/Visitor.php' );
 require_once( 'src/class/JSON_Grabinator.php' );
 require_once( 'src/class/Page_Makinator.php' );
+require_once( 'checkinator-admin.php' );
+require_once( 'src/utility.php' );
