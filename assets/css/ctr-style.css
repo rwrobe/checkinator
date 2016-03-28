@@ -3,7 +3,7 @@
 }
 #check-in {
     max-width: 600px;
-    margin: 0 auto;
+    margin: 3em auto;
 }
 #check-in fieldset {
     border: none;
@@ -15,7 +15,7 @@
 }
 #last {
     margin-right: 0;
-    margin-left: 2%;
+    margin-left: 1%;
 }
 #last::after{
     display: table;
@@ -44,4 +44,8 @@
     border: 2px solid #810002;
     background: #ff989b;
     padding: 1.5em;
+}
+.submit {
+    font-size: 16px;
+    margin: 1.5em 0;
 }
