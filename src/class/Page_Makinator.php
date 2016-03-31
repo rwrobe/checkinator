@@ -64,10 +64,10 @@ if ( ! class_exists( 'Page_Makinator' ) ) :
 
 			$meta_exists = get_user_meta( $this->uid, 'ctr_create_page' ); /** Causes performance trouble on WP.com, given scale and purpose of plugin, keeping it in here. */
 
-			if ( ! $meta_exists || 0 != $meta_exists[0] ) {
+			if ( ! $meta_exists || 0 !== $meta_exists[0] ) {
 				printf( '<div class="updated"><p>%1$s <br /><br /> <a href="%2$s">%3$s</a><br /><br /><a href="%4$s">%5$s</a></p></div>',
 					sprintf( esc_html__( 'Checkinator needs a page called <i>%s</i> to work properly. Would you like to create this page now?', $this->textdomain ),
-						$this->title
+						esc_html( $this->title )
 					),
 					'?ctr_create_page=1',
 					esc_html__( 'Yes, please.', $this->textdomain ),
@@ -125,9 +125,10 @@ if ( ! class_exists( 'Page_Makinator' ) ) :
 			}
 
 			wp_enqueue_style( 'ctr-style', CTR_BASE_DIR . '/assets/css/ctr-style.css', false );
+			wp_enqueue_style( 'ctr-gfonts', "<link href='https://fonts.googleapis.com/css?family=Alegreya+Sans:100,500' rel='stylesheet' type='text/css'>", false );
 
 			wp_enqueue_script( 'ctr-validation', CTR_BASE_DIR . '/vendor/js/jquery.validate.min.js', array( 'jquery' ), '1.9.0' );
-			wp_enqueue_script( 'ctr-functinos', CTR_BASE_DIR . '/assets/js/ctr-functions.js', array( 'jquery' ), '1.0' );
+			wp_enqueue_script( 'ctr-functions', CTR_BASE_DIR . '/assets/js/ctr-functions.js', array( 'jquery' ), '1.0' );
 		}
 
 		/**

@@ -1,9 +1,29 @@
 ;var Checkinator = (function($){
 
-    var $form = $(document.getElementById('check-in'));
+    var form = document.getElementById('check-in'),
+        $form = $(form);
 
     var init = function(){
+        form_init();
+    };
+
+    var form_init = function(){
+
         /** Add validation */
+        validator();
+
+        /** Redirect on success/error */
+        var $success = $(document.getElementsByClassName('ctr-success-message')),
+            $error = jQuery(document.getElementsByClassName('ctr-error-message'));
+
+        if( $success.length > 0 || $error.length > 0 ){
+            window.setTimeout(function(){
+                window.location = window.location.href;
+            }, 3000);
+        }
+    };
+
+    var validator = function(){
         jQuery.validator.addMethod("accept", function(value, element, param) {
             return value.match(new RegExp("." + param + "$"));
         });
@@ -30,16 +50,6 @@
                 lastName: "Please enter a valid last name"
             }
         });
-
-        /** Redirect on success/error */
-        var $success = $(document.getElementsByClassName('success-message')),
-            $error = jQuery(document.getElementsByClassName('error-message'));
-
-        if( $success.length > 0 || $error.length > 0 ){
-            window.setTimeout(function(){
-                window.location = window.location.href;
-            }, 3000);
-        }
     };
 
     return {

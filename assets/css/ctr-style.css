@@ -2,55 +2,231 @@
     display: none;
 }
 #check-in {
-    max-width: 600px;
+    max-width: 800px;
     margin: 3em auto;
+    padding: 0 6%;
+    text-align: left;
+    font-family: "Alegreya Sans", sans-serif;
+    font-size: 32px;
 }
-#check-in fieldset {
-    border: none;
-}
-#first, #last {
-    width: 48%;
-    margin-right: 2%;
-    float: left;
-}
-#last {
-    margin-right: 0;
-    margin-left: 1%;
-}
-#last::after{
-    display: table;
-    clear: both;
-}
-#desk {
-    width: 100%;
-}
-#desk label {
+#check-in span {
     display: block;
     margin-bottom: 1.5em;
 }
-#desk select {
-    padding: 0.75em;
+#check-in fieldset {
+    border: none;
+    padding: 0;
 }
-.success-message {
-    max-width: 600px;
-    margin: 3em auto;
-    border: 2px solid #008130;
-    background: #a4ff9b;
-    padding: 1.5em;
+.ctr-form {
+    width: 100%;
+    margin: 0.3em auto 0 auto;
+    font-size: 4em;
+    line-height: 1.5;
 }
-.error-message {
-    max-width: 600px;
-    margin: 3em auto;
-    border: 2px solid #810002;
-    background: #ff989b;
-    padding: 1.5em;
+.ctr-form ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
-.submit {
-    font-size: 16px;
-    margin: 1.5em 0;
+
+/** Normalize inputs */
+.ctr-form input[type=text],
+.ctr-form select,
+.ctr-form button {
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
-@media screen and (max-width: 600px ) {
-    #check-in, .error-message, .success-message {
-        margin: 3em 2%;
+.ctr-form input:focus, .ctr-form select:focus, .ctr-form select option:focus {
+    outline: none;
+}
+.ctr-field {
+    display: inline-block;
+    position: relative;
+}
+.ctr-field.ctr-field-open {
+    z-index: 10000;
+}
+.ctr-form input[type="text"],
+.ctr-form select  {
+    line-height: inherit;
+    width: auto;
+    display: inline-block;
+    color: #4a86b1;
+    cursor: pointer;
+    border-bottom: 1px dashed #4a86b1;
+    box-shadow: none;
+}
+.ctr-form input[type="text"]:focus {
+    color: #4a86b1;
+}
+.ctr-field ul {
+    position: absolute;
+    visibility: hidden;
+    background: #76C3BD;
+    left: -0.5em;
+    top: 50%;
+    font-size: 80%;
+    opacity: 0;
+    -webkit-transform: translateY(-40%) scale(0.9);
+    -moz-transform: translateY(-40%) scale(0.9);
+    transform: translateY(-40%) scale(0.9);
+    -webkit-transition: visibility 0s 0.3s, opacity 0.3s, -webkit-transform 0.3s;
+    -moz-transition: visibility 0s 0.3s, opacity 0.3s, -moz-transform 0.3s;
+    transition: visibility 0s 0.3s, opacity 0.3s, transform 0.3s;
+}
+.ctr-field.ctr-field-open ul {
+    visibility: visible;
+    opacity: 1;
+    -webkit-transform: translateY(-50%) scale(1);
+    -moz-transform: translateY(-50%) scale(1);
+    transform: translateY(-50%) scale(1);
+    -webkit-transition: visibility 0s 0s, opacity 0.3s, -webkit-transform 0.3s;
+    -moz-transition: visibility 0s 0s, opacity 0.3s, -moz-transform 0.3s;
+    transition: visibility 0s 0s, opacity 0.3s, transform 0.3s;
+}
+.ctr-field ul li {
+    color: #fff;
+    position: relative;
+}
+.ctr-dd ul li {
+    padding: 0 1.5em 0 0.5em;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.ctr-dd ul li.ctr-dd-checked {
+    color: #478982;
+}
+.no-touch .ctr-dd ul li:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+.no-touch .ctr-dd ul li:hover:active {
+    color: #478982;
+}
+.ctr-ti-text ul {
+    min-width: 8em;
+}
+.ctr-ti-text ul li.ctr-ti-input input {
+    width: 100%;
+    padding: 0.2em 2em 0.2em 0.5em;
+    border-bottom: none;
+    color: #fff;
+}
+input::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.4);
+}
+input:active::-webkit-input-placeholder ,
+input:focus::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.2);
+}
+input::-moz-placeholder {
+    color: rgba(0, 0, 0, 0.4);
+}
+input:active::-moz-placeholder,
+input:focus::-moz-placeholder {
+    color: rgba(0, 0, 0, 0.2);
+}
+input:-ms-input-placeholder {
+    color: rgba(0, 0, 0, 0.4);
+}
+input:active:-ms-input-placeholder,
+input:focus:-ms-input-placeholder {
+    color: rgba(0, 0, 0, 0.2);
+}
+.ctr-submit-wrap {
+    margin-top: 1.5em;
+}
+.ctr-form .ctr-submit {
+    line-height: 60px;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    background: #4a86b1;
+    color: #fff;
+    padding: 0 1em;
+    font-size: 40%;
+    font-weight: bold;
+    letter-spacing: 2px;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+}
+.no-touch .ctr-form .ctr-submit:hover,
+.no-touch .ctr-form .ctr-submit:active {
+    background: #69B1A9;
+}
+.no-touch .ctr-form .ctr-submit:hover:before {
+    background: #58a199;
+}
+.ctr-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    z-index: 9999;
+    visibility: hidden;
+    -webkit-transition: visibility 0s 0.3s, opacity 0.3s;
+    -moz-transition: visibility 0s 0.3s, opacity 0.3s;
+    transition: visibility 0s 0.3s, opacity 0.3s;
+}
+.ctr-field.ctr-field-open ~ .ctr-overlay {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+    transition-delay: 0s;
+}
+.ctr-success-message {
+    margin: 3em 0;
+    padding: 3em;
+    border: 3px solid #3d803e;
+    background: #9fcf99;
+    font-family: "Alegreya Sans", sans-serif;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+.ctr-error-message {
+    margin: 3em 0;
+    padding: 3em;
+    border: 3px solid #800115;
+    background: #FFEEED;
+    font-family: "Alegreya Sans", sans-serif;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+@media screen and (max-width: 45em) {
+    .ctr-form {
+        font-size: 3em;
+    }
+}
+@media screen and (max-width: 25em) {
+    .ctr-form {
+        font-size: 2em;
+    }
+}
+@media screen and (max-width: 400px) {
+    #check-in,
+    .ctr-success-message,
+    .ctr-error-message {
+        font-size: 22px;
+        max-width: 96%;
+        margin: 3em auto;
+    }
+    .ctr-form .ctr-submit {
+        letter-spacing: normal;
     }
 }

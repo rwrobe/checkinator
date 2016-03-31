@@ -12,50 +12,45 @@ $personnel_arr = get_option( 'ctr_personnel_list' ) ? get_option( 'ctr_personnel
 $desk = ctr_process_form( $personnel_arr );
 
 get_header(); ?>
-<form action="" id="check-in" method="POST"<?php echo $desk ? ' class="hide"' : ''; ?> novalidate="novalidate">
 
-	<fieldset id="first">
-		<label for="firstName"><?php esc_html_e( 'First Name', 'checkinator' ) ?></label>
-		<input type="text" name="firstName" id="firstName" minlength="2" class="text required" />
-	</fieldset>
+<form action="" id="check-in" method="POST" class="ctr-form<?php echo $desk ? ' hide' : ''; ?>" novalidate="novalidate">
+	<span><?php esc_html_e( 'Hi! How can we help you?', 'checkinator' ); ?></span>
 
-	<fieldset id="last">
-		<label for="lastName"><?php esc_html_e( 'Last Name', 'checkinator' ) ?></label>
-		<input type="text" name="lastName" id="lastName" minlength="2" class="text required" />
-	</fieldset>
+	<?php esc_html_e( 'Hi, my name is ', 'checkinator' ); ?>
+	<input type="text" name="firstName" id="firstName" placeholder="first" minlength="2" class="text required" />
 
-	<fieldset id="desk">
-		<label for="personnel"><?php esc_html_e( 'Here to See', 'checkinator' ) ?></label>
-		<select name="personnel" id="personnel" class="required">
-			<?php
-			/**
-			 * Using the desk as the unique ID for staff, even though one could foresee
-			 * two employees sharing the same desk number. We could fix this by generating
-			 * a unique ID for each JSON entry and keying on that.
-			 */
-			foreach ( $personnel_arr as $staff ) : ?>
-				<option value="<?php esc_attr_e( $staff['desk'] ); ?>"><?php esc_html_e( $staff['name'] ); ?></option>
-			<?php endforeach; ?>
-		</select>
-	</fieldset>
+	<input type="text" name="lastName" id="lastName" placeholder="last" minlength="2" class="text required" />
+
+	<?php esc_html_e( ' and I am here to see ', 'checkinator' ); ?>
+	<select name="personnel" id="personnel" class="required">
+		<?php
+		/**
+		 * Using the desk as the unique ID for staff, even though one could foresee
+		 * two employees sharing the same desk number. We could fix this by generating
+		 * a unique ID for each JSON entry and keying on that.
+		 */
+		foreach ( $personnel_arr as $staff ) : ?>
+			<option value="<?php esc_attr_e( $staff['desk'] ); ?>"><?php esc_html_e( $staff['name'] ); ?></option>
+		<?php endforeach; ?>
+	</select>
 
 	<?php wp_nonce_field( 'post_nonce', 'checkinator_nonce_field' ); ?>
 
-	<fieldset>
+	<fieldset class="ctr-submit-wrap">
 		<input type="hidden" name="submitted" id="submitted" value="true" />
-		<button type="submit" class="submit"><?php esc_html_e( 'Check In', 'checkinator' ) ?></button>
+		<button type="submit" class="ctr-submit"><?php esc_html_e( 'Check In', 'checkinator' ) ?></button>
 	</fieldset>
 
 </form>
 
 <?php if ( $desk && 'error' !== $desk ) { ?>
-<div class="success-message">
+<div class="ctr-success-message">
 	<h2><?php printf( esc_html__( 'Please proceed to desk %s.', 'checkinator' ),
 		esc_html( $desk )
 	); ?></h2>
 </div>
 <?php } else if ( $desk ) { ?>
-	<div class="error-message">
+	<div class="ctr-error-message">
 		<h2><?php esc_html_e( "I'm sorry, but you can only check in twice per day. Please come back tomorrow.", 'checkinator' ); ?></h2>
 	</div>
 <?php } ?>
