@@ -3,6 +3,7 @@
 }
 #check-in {
     max-width: 800px;
+    width: 90%;
     margin: 3em auto;
     padding: 0 6%;
     text-align: left;
@@ -16,6 +17,9 @@
 #check-in fieldset {
     border: none;
     padding: 0;
+}
+#check-in label.error {
+    display: none !important;
 }
 .ctr-form {
     width: 100%;
@@ -48,6 +52,10 @@
 }
 .ctr-form input:focus, .ctr-form select:focus, .ctr-form select option:focus {
     outline: none;
+}
+.ctr-form input[type=text].error {
+    border-bottom: 1px dashed #800115;
+    background: #FFEEED;
 }
 .ctr-field {
     display: inline-block;
@@ -188,26 +196,26 @@ input:focus:-ms-input-placeholder {
     -moz-transition-delay: 0s;
     transition-delay: 0s;
 }
-.ctr-success-message {
+.ctr-success-message, .ctr-error-message {
     margin: 3em 0;
     padding: 3em;
     border: 3px solid #3d803e;
     background: #9fcf99;
     font-family: "Alegreya Sans", sans-serif;
+    text-align: center;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
 }
 .ctr-error-message {
-    margin: 3em 0;
-    padding: 3em;
     border: 3px solid #800115;
     background: #FFEEED;
-    font-family: "Alegreya Sans", sans-serif;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
 }
+.ctr-success-message h2,
+.ctr-error-message h2 {
+    font-size: 32px;
+}
+
 @media screen and (max-width: 45em) {
     .ctr-form {
         font-size: 3em;
@@ -218,12 +226,23 @@ input:focus:-ms-input-placeholder {
         font-size: 2em;
     }
 }
+@media screen and (max-width: 1024px) {
+    #check-in,
+    .ctr-success-message,
+    .ctr-error-message {
+        font-size: 28px;
+        padding: 1.5em;
+        max-width: 60%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
 @media screen and (max-width: 400px) {
     #check-in,
     .ctr-success-message,
     .ctr-error-message {
         font-size: 22px;
-        max-width: 96%;
+        max-width: 80%;
         margin: 3em auto;
     }
     .ctr-form .ctr-submit {

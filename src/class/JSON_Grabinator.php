@@ -13,13 +13,13 @@ if ( ! class_exists( 'JSON_Grabinator' ) ) :
 	class JSON_Grabinator {
 		/** @var string  The text domain for localization. */
 		private $textdomain = 'checkinator';
-		/* @var $personnel_json string  Location of the JSON file that holds the personnel list */
-		private $personnel_json = '';
+		/* @var $url string  Location of the JSON file that holds the personnel list */
+		private $url = '';
 		/** @var string An admin message to notify if curl_init is not allowed/does not exist */
 		private $warning_msg = '';
 
 		public function __construct() {
-			$this->personnel_json = CTR_BASE_DIR . '/assets/coworkers.json';
+			$this->url = 'https://gist.githubusercontent.com/jjeaton/21f04d41287119926eb4/raw/4121417bda0860f662d471d1d22b934a0af56eca/coworkers.json';
 
 			register_activation_hook( CTR_BASE_FILE, array( &$this, 'init' ) );
 			register_deactivation_hook( CTR_BASE_FILE, array( &$this, 'tear_down' ) );
@@ -34,7 +34,7 @@ if ( ! class_exists( 'JSON_Grabinator' ) ) :
 		 */
 		public function init() {
 			$personnel_decode = array(); // Declare empty variable to type
-			$json             = $this->get_json( $this->personnel_json );
+			$json             = $this->get_json( $this->url );
 
 			if ( $json ) {
 				$personnel_decode = json_decode( $json, true );
@@ -49,7 +49,7 @@ if ( ! class_exists( 'JSON_Grabinator' ) ) :
 		 */
 		public function tear_down() {
 			/** Erase the wp_options string */
-			update_option( 'ctr_personnel_list', '' );
+			delete_option( 'ctr_personnel_list' );
 			/** Clear admin notice meta */
 		}
 
@@ -59,15 +59,19 @@ if ( ! class_exists( 'JSON_Grabinator' ) ) :
 		 * @var string      The path to the personnel JSON file.
 		 * @return array    The decoded JSON
 		 */
-		public function get_json( $path ) {
+		public function get_json( $url ) {
 
-			$response = wp_remote_get( 'https://gist.githubusercontent.com/jjeaton/21f04d41287119926eb4/raw/4121417bda0860f662d471d1d22b934a0af56eca/coworkers.json' );
+			$response = wp_remote_get( $url );
 
 			/** Check for 200 status */
 			if ( '200' === wp_remote_retrieve_response_code( $response ) ) {
 				return false;
 			}
 
+			/**
+			 * Funny enough, I couldn't figure out why this was returning 200, but no response body,
+			 * turned out I had Airplane Mode enabled.
+			 */
 			$output = wp_remote_retrieve_body( $response );
 
 			/** Previous cURL method for packaged JSON
@@ -92,7 +96,7 @@ if ( ! class_exists( 'JSON_Grabinator' ) ) :
 		}
 
 		/**
-		 * Print an admin notice if CURL not allowed/present
+		 * Print an admin notice if HTTP request does not return 200 OK
 		 */
 		public function admin_notices() {
 

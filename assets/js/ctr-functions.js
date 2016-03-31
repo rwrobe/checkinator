@@ -5,12 +5,13 @@
 
     var init = function(){
         form_init();
+        /** Add validation */
+        $(window).load(function(){
+            validator();
+        });
     };
 
     var form_init = function(){
-
-        /** Add validation */
-        validator();
 
         /** Redirect on success/error */
         var $success = $(document.getElementsByClassName('ctr-success-message')),
@@ -28,8 +29,11 @@
             return value.match(new RegExp("." + param + "$"));
         });
 
-        $form.validate({
+        $('#check-in').validate({
             rules: {
+                firstName: "required",
+                lastName: "required",
+
                 firstName: {
                     required: true,
                     minlength: 2,
@@ -43,12 +47,6 @@
                     accept: "[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$"
                 }
             },
-
-            // Specify the validation error messages
-            messages: {
-                firstName: "Please enter a valid first name",
-                lastName: "Please enter a valid last name"
-            }
         });
     };
 
