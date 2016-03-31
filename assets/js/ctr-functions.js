@@ -38,7 +38,7 @@
         if( $success.length > 0 || $error.length > 0 ){
             window.setTimeout(function(){
                 window.location = window.location.href;
-            }, 5000);
+            }, 3000);
         }
     };
 

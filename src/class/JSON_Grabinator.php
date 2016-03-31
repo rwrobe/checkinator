@@ -40,7 +40,7 @@ if ( ! class_exists( 'JSON_Grabinator' ) ) :
 				$personnel_decode = json_decode( $json, true );
 				update_option( 'ctr_personnel_list', $personnel_decode );
 			} else {
-				$this->warning_msg = esc_attr__( 'Your server does not support or allow CURL, so Checkinator was deactivated.', $this->textdomain );
+				$this->warning_msg = esc_attr__( 'We had trouble grabbing the personnel list from the server.', $this->textdomain );
 			}
 		}
 
@@ -61,7 +61,16 @@ if ( ! class_exists( 'JSON_Grabinator' ) ) :
 		 */
 		public function get_json( $path ) {
 
-			/** Check for CURL */
+			$response = wp_remote_get( 'https://gist.githubusercontent.com/jjeaton/21f04d41287119926eb4/raw/4121417bda0860f662d471d1d22b934a0af56eca/coworkers.json' );
+
+			/** Check for 200 status */
+			if ( '200' === wp_remote_retrieve_response_code( $response ) ) {
+				return false;
+			}
+
+			$output = wp_remote_retrieve_body( $response );
+
+			/** Previous cURL method for packaged JSON
 			if ( ! function_exists( 'curl_init' ) ) {
 				return false;
 			}
@@ -77,7 +86,7 @@ if ( ! class_exists( 'JSON_Grabinator' ) ) :
 
 			$output = curl_exec( $ch );
 
-			curl_close( $ch );
+			curl_close( $ch ); */
 
 			return $output;
 		}

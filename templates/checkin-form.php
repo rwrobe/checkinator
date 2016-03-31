@@ -20,7 +20,7 @@ if ( ! is_user_logged_in() ) {
 }
 
 /** @var array  The list of personnel loaded from JSON */
-$personnel_arr = get_option( 'personnel_list' ) ? get_option( 'personnel_list' ) : array();
+$personnel_arr = get_option( 'ctr_personnel_list' ) ? get_option( 'ctr_personnel_list' ) : array();
 /** @var WP_Post|WP_Error|bool $desk  If POST was successful, hide the form and display the success message. */
 $desk = ctr_process_form( $personnel_arr );
 
