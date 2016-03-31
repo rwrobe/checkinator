@@ -197,7 +197,8 @@ input:focus:-ms-input-placeholder {
     transition-delay: 0s;
 }
 .ctr-success-message, .ctr-error-message {
-    margin: 3em 0;
+    max-width: 600px;
+    margin: 3em auto;
     padding: 3em;
     border: 3px solid #3d803e;
     background: #9fcf99;
