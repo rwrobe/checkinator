@@ -36,11 +36,8 @@ require_once( 'checkinator-admin.php' ); // The admin log
 require_once( 'src/utility.php' ); // Form processing and cron job
 
 /**
- * Remaining tasks:
- * @todo: Style the form better
- * @todo: Style the backend log
+ * Future Improvements:
  * @todo: Make form submit via AJAX, and have messages appear using JS vs. PHP
- * @todo: Implement a PDR redirect (instead of currently reloading the page) @see https://en.wikipedia.org/wiki/Post/Redirect/Get
+ * @todo: Implement a PGR redirect (instead of currently reloading the page) @see https://en.wikipedia.org/wiki/Post/Redirect/Get
  * @todo: Create tests
- * @todo: Add plugin settings to adjust number of visitors per day
  */
