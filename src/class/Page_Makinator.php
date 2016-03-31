@@ -5,20 +5,20 @@
 
 namespace notne\Page_Makinator;
 
-if( ! class_exists( 'Page_Makinator' ) ) :
+if ( ! class_exists( 'Page_Makinator' ) ) :
 	class Page_Makinator {
 
 		/** @var string  The text domain for localization. */
-		private $textdomain  = 'checkinator';
+		private $textdomain = 'checkinator';
 		/** @var string  The title of the page made on activation */
-		private $title       = '';
+		private $title = '';
 		/** @var string  The page slug */
-		private $slug        = 'visit';
+		private $slug = 'visit';
 		/** @var string  The user ID */
-		private $uid         = '';
+		private $uid = '';
 
 		public function __construct() {
-			$this->title        = esc_attr__( 'Check-In Form', $this->textdomain );
+			$this->title = esc_attr__( 'Check-In Form', $this->textdomain );
 
 			add_action( 'admin_init', array( &$this, 'init' ) );
 			add_action( 'admin_notices', array( &$this, 'admin_notices' ) );
@@ -37,19 +37,19 @@ if( ! class_exists( 'Page_Makinator' ) ) :
 			$this->uid   = $current_user->ID;
 			$hide_notice = get_user_meta( $this->uid, 'ctr_create_page' );
 
-			if( get_page_by_path( $this->slug ) ){
+			if ( get_page_by_path( $this->slug ) ) {
 				return;
 			}
 
-			if( $hide_notice && 0 == $hide_notice[0] ){
+			if ( $hide_notice && 0 == $hide_notice[0] ) {
 				return;
 			}
 
-			if( isset( $_GET['ctr_create_page'] ) && 0 == $_GET['ctr_create_page'] ) {
+			if ( isset( $_GET['ctr_create_page'] ) && 0 == $_GET['ctr_create_page'] ) {
 				update_user_meta( $this->uid, 'ctr_create_page', $_GET['ctr_create_page'] );
 			}
 
-			if( isset( $_GET['ctr_create_page'] ) && 1 == $_GET['ctr_create_page'] ) {
+			if ( isset( $_GET['ctr_create_page'] ) && 1 == $_GET['ctr_create_page'] ) {
 				$this->make_page();
 			}
 		}
@@ -57,16 +57,16 @@ if( ! class_exists( 'Page_Makinator' ) ) :
 		/**
 		 * Add the notice to the admin
 		 */
-		public function admin_notices(){
-			if( get_page_by_path( $this->slug ) ){
+		public function admin_notices() {
+			if ( get_page_by_path( $this->slug ) ) {
 				return;
 			}
 
-			$meta_exists = get_user_meta( $this->uid, 'ctr_create_page' );
+			$meta_exists = get_user_meta( $this->uid, 'ctr_create_page' ); /** Causes performance trouble on WP.com, given scale and purpose of plugin, keeping it in here. */
 
 			if ( ! $meta_exists || 0 != $meta_exists[0] ) {
 				printf( '<div class="updated"><p>%1$s <br /><br /> <a href="%2$s">%3$s</a><br /><br /><a href="%4$s">%5$s</a></p></div>',
-					sprintf( __( 'Checkinator needs a page called <i>%s</i> to work properly. Would you like to create this page now?', $this->textdomain ),
+					sprintf( esc_html__( 'Checkinator needs a page called <i>%s</i> to work properly. Would you like to create this page now?', $this->textdomain ),
 						$this->title
 					),
 					'?ctr_create_page=1',
@@ -80,18 +80,18 @@ if( ! class_exists( 'Page_Makinator' ) ) :
 		/**
 		 * Create the check-in page.
 		 */
-		public function make_page(){
+		public function make_page() {
 
 			$checkin_form = array(
-				'post_type'     => 'page',
-				'post_title'    => $this->title,
-				'post_name'     => $this->slug,
-				'post_content'  => '',
-				'post_status'   => 'publish',
-				'post_author'   => 1,
+				'post_type'    => 'page',
+				'post_title'   => $this->title,
+				'post_name'    => $this->slug,
+				'post_content' => '',
+				'post_status'  => 'publish',
+				'post_author'  => 1,
 			);
 
-			if( ! get_page_by_path( $this->slug ) ){
+			if ( ! get_page_by_path( $this->slug ) ) {
 				$id = wp_insert_post( $checkin_form );
 				update_post_meta( $id, '_wp_page_template', CTR_BASE_DIR . '/templates/checkin-form.php' );
 			}
@@ -109,7 +109,7 @@ if( ! class_exists( 'Page_Makinator' ) ) :
 			global $post;
 			$checkin = get_page_by_path( $this->slug );
 
-			if( $post->ID == $checkin->ID ) {
+			if ( $post->ID == $checkin->ID ) {
 				$template = CTR_PLUGIN_PATH . '/templates/checkin-form.php';
 			}
 
@@ -120,10 +120,9 @@ if( ! class_exists( 'Page_Makinator' ) ) :
 		 * Enqueue scripts for the form template
 		 */
 		public function enqueue_stuff() {
-			global $post;
-
-			if( ! get_page_by_path( $this->slug ) )
+			if ( ! get_page_by_path( $this->slug ) ) {
 				return;
+			}
 
 			wp_enqueue_style( 'ctr-style', CTR_BASE_DIR . '/assets/css/ctr-style.css', false );
 
@@ -134,7 +133,7 @@ if( ! class_exists( 'Page_Makinator' ) ) :
 		/**
 		 * Clean up after ourselves
 		 */
-		public function tear_down(){
+		public function tear_down() {
 			delete_user_meta( $this->uid, 'ctr_create_page' );
 		}
 	}

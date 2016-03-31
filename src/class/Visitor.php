@@ -9,7 +9,9 @@
 namespace notne\Visitor;
 
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+} // Exit if accessed directly
 
 if( ! class_exists( 'Visitor' ) ) :
 	class Visitor {
@@ -39,19 +41,19 @@ if( ! class_exists( 'Visitor' ) ) :
 			/** Define the settings */
 			$settings = array(
 				'labels'			 => array(
-					'name'				 => __( 'Visitors', $this->textdomain ),
-					'singular_name'		 => __( 'Visitor', $this->textdomain ),
-					'add_new'			 => __( 'Add New', $this->textdomain ),
-					'add_new_item'		 => __( 'Add New Visitor', $this->textdomain ),
-					'edit'				 => __( 'Edit', $this->textdomain ),
-					'edit_item'			 => __( 'Edit Visitor', $this->textdomain ),
-					'new_item'			 => __( 'New Visitor', $this->textdomain ),
-					'view'				 => __( 'View Visitor', $this->textdomain ),
-					'view_item'			 => __( 'View Visitor', $this->textdomain ),
-					'search_items'		 => __( 'Search Visitors', $this->textdomain ),
-					'not_found'			 => __( 'No visitors found', $this->textdomain ),
-					'not_found_in_trash' => __( 'No visitors found in Trash', $this->textdomain ), /** Chuckle */
-					'parent'			 => __( 'Parent Visitor', $this->textdomain ),
+					'name'				 => esc_attr__( 'Visitors', $this->textdomain ),
+					'singular_name'		 => esc_attr__( 'Visitor', $this->textdomain ),
+					'add_new'			 => esc_attr__( 'Add New', $this->textdomain ),
+					'add_new_item'		 => esc_attr__( 'Add New Visitor', $this->textdomain ),
+					'edit'				 => esc_attr__( 'Edit', $this->textdomain ),
+					'edit_item'			 => esc_attr__( 'Edit Visitor', $this->textdomain ),
+					'new_item'			 => esc_attr__( 'New Visitor', $this->textdomain ),
+					'view'				 => esc_attr__( 'View Visitor', $this->textdomain ),
+					'view_item'			 => esc_attr__( 'View Visitor', $this->textdomain ),
+					'search_items'		 => esc_attr__( 'Search Visitors', $this->textdomain ),
+					'not_found'			 => esc_attr__( 'No visitors found', $this->textdomain ),
+					'not_found_in_trash' => esc_attr__( 'No visitors found in Trash', $this->textdomain ), /** Chuckle */
+					'parent'			 => esc_attr__( 'Parent Visitor', $this->textdomain ),
 				),
 				'public'				 => true,
 				'publicly_queryable'	 => true,

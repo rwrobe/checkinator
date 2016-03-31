@@ -8,7 +8,7 @@
             return value.match(new RegExp("." + param + "$"));
         });
 
-        $('#check-in').validate({
+        $form.validate({
             rules: {
                 firstName: {
                     required: true,
@@ -27,7 +27,7 @@
             // Specify the validation error messages
             messages: {
                 firstName: "Please enter a valid first name",
-                lastName: "Please enter a valid last name",
+                lastName: "Please enter a valid last name"
             }
         });
 

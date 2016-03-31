@@ -9,7 +9,7 @@ module.exports = function( grunt ) {
 
 		addtextdomain: {
 			options: {
-				textdomain: 'checkinator',
+				textdomain: 'checkinator'
 			},
 			target: {
 				files: {
@@ -23,7 +23,7 @@ module.exports = function( grunt ) {
 				files: {
 					'README.md': 'readme.txt'
 				}
-			},
+			}
 		},
 
 		makepot: {
@@ -40,7 +40,7 @@ module.exports = function( grunt ) {
 					updateTimestamp: true
 				}
 			}
-		},
+		}
 	} );
 
 	grunt.loadNpmTasks( 'grunt-wp-i18n' );

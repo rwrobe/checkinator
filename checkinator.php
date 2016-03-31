@@ -15,14 +15,18 @@ namespace notne;
 
 
 /** Set plugin constants */
-if ( ! defined( 'CTR_BASE_FILE' ) )
+if ( ! defined( 'CTR_BASE_FILE' ) ) {
 	define( 'CTR_BASE_FILE', __FILE__ );
-if ( ! defined( 'CTR_BASE_DIR' ) )
+}
+if ( ! defined( 'CTR_BASE_DIR' ) ) {
 	define( 'CTR_BASE_DIR',  WP_PLUGIN_URL . '/' . dirname( plugin_basename( CTR_BASE_FILE ) ) );
-if ( ! defined( 'CTR_PLUGIN_URL' ) )
+}
+if ( ! defined( 'CTR_PLUGIN_URL' ) ) {
 	define( 'CTR_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-if ( ! defined( 'CTR_PLUGIN_PATH' ) )
+}
+if ( ! defined( 'CTR_PLUGIN_PATH' ) ) {
 	define( 'CTR_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
+}
 
 /** Require the plugin classes */
 require_once( 'src/class/Visitor.php' ); // Create the visitor CPT

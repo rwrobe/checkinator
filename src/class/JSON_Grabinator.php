@@ -2,12 +2,14 @@
 /**
  * Grab, decode and store the personnel JSON file on plugin activation
  *
+ * (WPCS) Using Capital/underscore names as a personal convention for class files
+ *
  * @package Checkinator
  */
 
 namespace notne\JSON_Grabinator;
 
-if( ! class_exists( 'JSON_Grabinator' ) ) :
+if ( ! class_exists( 'JSON_Grabinator' ) ) :
 	class JSON_Grabinator {
 		/** @var string  The text domain for localization. */
 		private $textdomain = 'checkinator';
@@ -31,7 +33,7 @@ if( ! class_exists( 'JSON_Grabinator' ) ) :
 		 * Read the JSON and save it.
 		 */
 		public function init() {
-			$personnel_decode = array();
+			$personnel_decode = array(); // Declare empty variable to type
 			$json             = $this->get_json( $this->personnel_json );
 
 			if ( $json ) {
@@ -61,7 +63,7 @@ if( ! class_exists( 'JSON_Grabinator' ) ) :
 
 			/** Check for CURL */
 			if ( ! function_exists( 'curl_init' ) ) {
-					return false;
+				return false;
 			}
 
 			$ch = curl_init();
@@ -85,8 +87,9 @@ if( ! class_exists( 'JSON_Grabinator' ) ) :
 		 */
 		public function admin_notices() {
 
-			if( ! $this->warning_msg )
+			if ( ! $this->warning_msg ) {
 				return;
+			}
 
 			global $current_user;
 			$uid = $current_user->ID;
@@ -108,8 +111,9 @@ if( ! class_exists( 'JSON_Grabinator' ) ) :
 			$uid = $current_user->ID;
 
 			/* If user clicks to ignore the notice, add that to their user meta */
-			if ( isset( $_GET['ctr_thanks_but_no_thanks'] ) && '0' == $_GET['ctr_thanks_but_no_thanks'] )
+			if ( isset( $_GET['ctr_thanks_but_no_thanks'] ) && '0' == $_GET['ctr_thanks_but_no_thanks'] ) {
 				add_user_meta( $uid, 'ctr_thanks_but_no_thanks', 1, true );
+			}
 		}
 	}
 

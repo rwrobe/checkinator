@@ -10,12 +10,12 @@
  * so I'm controlling access via user roles. Simply close new user registration and log in
  * at the beginning of the day.
  */
-if( ! is_user_logged_in() ) {
-	wp_die( sprintf( '%1$s <a href="%2$s" alt="%3$s">%4$s</a>',
-		__( "I'm sorry, you'll need to be logged in to use this form.", 'checkinator' ),
-		wp_login_url( get_permalink() ),
-		__( 'WP Login', 'checkinator' ),
-		__( 'Log in now.', 'checkinator' )
+if ( ! is_user_logged_in() ) {
+	wp_die( sprintf( '%1$s <a href="%2$s" title="%3$s">%4$s</a>',
+		esc_html__( "I'm sorry, you'll need to be logged in to use this form.", 'checkinator' ),
+		esc_url( wp_login_url( get_permalink() ) ),
+		esc_html__( 'WP Login', 'checkinator' ),
+		esc_html__( 'Log in now.', 'checkinator' )
 	) );
 }
 
@@ -46,7 +46,7 @@ get_header(); ?>
 			 * two employees sharing the same desk number. We could fix this by generating
 			 * a unique ID for each JSON entry and keying on that.
 			 */
-			foreach( $personnel_arr as $staff ) : ?>
+			foreach ( $personnel_arr as $staff ) : ?>
 				<option value="<?php esc_attr_e( $staff['desk'] ); ?>"><?php esc_attr_e( $staff['name'] ); ?></option>
 			<?php endforeach; ?>
 		</select>
@@ -61,15 +61,15 @@ get_header(); ?>
 
 </form>
 
-<?php if( $desk && 'error' != $desk ) { ?>
+<?php if ( $desk && 'error' !== $desk ) { ?>
 <div class="success-message">
-	<h2><?php printf( __( 'Please proceed to desk %s.', 'checkinator' ),
-				$desk
-			); ?></h2>
+	<h2><?php printf( esc_html__( 'Please proceed to desk %s.', 'checkinator' ),
+		esc_html( $desk )
+	); ?></h2>
 </div>
-<?php } else if( $desk ) { ?>
+<?php } else if ( $desk ) { ?>
 	<div class="error-message">
-		<h2><?php _e( "I'm sorry, but you can only check in twice per day. Please come back tomorrow.", 'checkinator' ); ?></h2>
+		<h2><?php esc_html_e( "I'm sorry, but you can only check in twice per day. Please come back tomorrow.", 'checkinator' ); ?></h2>
 	</div>
 <?php } ?>
 <?php get_footer(); ?>
