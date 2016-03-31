@@ -18,7 +18,7 @@ if ( ! class_exists( 'Page_Makinator' ) ) :
 		private $uid = '';
 
 		public function __construct() {
-			$this->title = esc_html__( 'Check-In Form', $this->textdomain );
+			$this->title = esc_attr__( 'Check-In Form', $this->textdomain );
 
 			add_action( 'admin_init', array( &$this, 'init' ) );
 			add_action( 'admin_notices', array( &$this, 'admin_notices' ) );
@@ -66,7 +66,7 @@ if ( ! class_exists( 'Page_Makinator' ) ) :
 
 			if ( ! $meta_exists || 0 !== $meta_exists[0] ) {
 				printf( '<div class="updated"><p>%1$s <br /><br /> <a href="%2$s">%3$s</a><br /><br /><a href="%4$s">%5$s</a></p></div>',
-					sprintf( esc_html__( 'Checkinator needs a page called <i>%s</i> to work properly. Would you like to create this page now?', $this->textdomain ),
+					sprintf( esc_html__( 'Checkinator needs a page called %s to work properly. Would you like to create this page now?', $this->textdomain ),
 						esc_html( $this->title )
 					),
 					'?ctr_create_page=1',

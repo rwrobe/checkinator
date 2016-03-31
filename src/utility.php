@@ -17,7 +17,7 @@ function ctr_process_form( $personnel_arr ) {
 
 	/** @todo Will need to manually inspect POST using var_export */
 	/** Check here for valid nonce. */
-	if ( isset( $_POST['checkinator_nonce_field'] ) && wp_verify_nonce( $_POST['checkinator_nonce_field'], 'post_nonce' ) ) {
+	if ( isset( $_POST['checkinator_nonce_field'] ) && wp_verify_nonce( wp_unslash( $_POST['checkinator_nonce_field'] ), 'post_nonce' ) ) {
 
 		$first_name = isset( $_POST['firstName'] ) ? esc_html( wp_unslash( $_POST['firstName'] ) ) : '';
 		$last_name  = isset( $_POST['lastName'] ) ? esc_html( wp_unslash( $_POST['lastName'] ) ) : '';
