@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
-if( ! class_exists( 'Visitor' ) ) :
+if ( ! class_exists( 'Visitor' ) ) :
 	class Visitor {
 
 		/** @var string The text domain, for localization */
@@ -21,7 +21,7 @@ if( ! class_exists( 'Visitor' ) ) :
 		/** @var string The slug for the CPT */
 		protected $slug = '';
 
-		public function __construct()	{
+		public function __construct() {
 			$this->textdomain	= 'checkinator';
 			$this->slug	        = 'visitor';
 
@@ -70,15 +70,15 @@ if( ! class_exists( 'Visitor' ) ) :
 				'menu_icon' 			 => 'dashicons-id',
 				'supports'				 => array( 'title', 'revisions' ),
 				'rewrite'				 => array(
-					'slug' => $this->slug
-				)
+					'slug' => $this->slug,
+				),
 			);
 
 			/** Register the post type */
 			register_post_type( $this->slug, $settings );
 		}
 
-		public function flush_rewrites(){
+		public function flush_rewrites() {
 
 			//defines the post type so the rules can be flushed.
 			$this->visitor_init();
@@ -91,4 +91,3 @@ if( ! class_exists( 'Visitor' ) ) :
 	$vtl = new Visitor();
 
 endif;
-?>

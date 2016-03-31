@@ -40,7 +40,7 @@ if ( ! class_exists( 'JSON_Grabinator' ) ) :
 				$personnel_decode = json_decode( $json, true );
 				update_option( 'ctr_personnel_list', $personnel_decode );
 			} else {
-				$this->warning_msg = esc_attr__( 'We had trouble grabbing the personnel list from the server.', $this->textdomain );
+				$this->warning_msg = esc_html__( 'We had trouble grabbing the personnel list from the server.', $this->textdomain );
 			}
 		}
 

@@ -17,17 +17,17 @@ function ctr_process_form( $personnel_arr ) {
 
 	/** @todo Will need to manually inspect POST using var_export */
 	/** Check here for valid nonce. */
-	if ( isset( $_POST['checkinator_nonce_field'] ) && wp_verify_nonce( esc_html( wp_unslash( $_POST['checkinator_nonce_field'] ) ) ) ) {
+	if ( isset( $_POST['checkinator_nonce_field'] ) && wp_verify_nonce( $_POST['checkinator_nonce_field'], 'post_nonce' ) ) {
 
-		$first_name = isset( $_POST['firstName'] ) ? esc_attr( wp_unslash( $_POST['firstName'] ) ) : '';
-		$last_name  = isset( $_POST['lastName'] ) ? esc_attr( wp_unslash( $_POST['lastName'] ) ) : '';
+		$first_name = isset( $_POST['firstName'] ) ? esc_html( wp_unslash( $_POST['firstName'] ) ) : '';
+		$last_name  = isset( $_POST['lastName'] ) ? esc_html( wp_unslash( $_POST['lastName'] ) ) : '';
 		$full_name  = ucfirst( $first_name ) . ' ' . ucfirst( $last_name );
-		$desk       = isset( $_POST['personnel'] ) ? esc_attr( wp_unslash( $_POST['personnel'] ) ) : '';
+		$desk       = isset( $_POST['personnel'] ) ? esc_html( wp_unslash( $_POST['personnel'] ) ) : '';
 		$here_for   = '';
 
 		/** Find the desk number to return to the form. */
 		foreach ( $personnel_arr as $staff ) {
-			if ( $desk === $staff['desk'] ) {
+			if ( $desk == $staff['desk'] ) { // Because of different variable types, we use loose comparison here
 				$here_for = esc_attr( $staff['name'] );
 			}
 		}

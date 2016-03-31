@@ -18,7 +18,7 @@ if ( ! class_exists( 'Page_Makinator' ) ) :
 		private $uid = '';
 
 		public function __construct() {
-			$this->title = esc_attr__( 'Check-In Form', $this->textdomain );
+			$this->title = esc_html__( 'Check-In Form', $this->textdomain );
 
 			add_action( 'admin_init', array( &$this, 'init' ) );
 			add_action( 'admin_notices', array( &$this, 'admin_notices' ) );
@@ -70,9 +70,9 @@ if ( ! class_exists( 'Page_Makinator' ) ) :
 						$this->title
 					),
 					'?ctr_create_page=1',
-					esc_attr__( 'Yes, please.', $this->textdomain ),
+					esc_html__( 'Yes, please.', $this->textdomain ),
 					'?ctr_create_page=0',
-					esc_attr__( 'No, I will do it myself.', $this->textdomain )
+					esc_html__( 'No, I will do it myself.', $this->textdomain )
 				);
 			}
 		}

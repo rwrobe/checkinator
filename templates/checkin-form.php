@@ -5,19 +5,6 @@
  * @package Checkinator
  */
 
-/**
- * Check if the user is a subscriber. We don't want to open a form like this to the web,
- * so I'm controlling access via user roles. Simply close new user registration and log in
- * at the beginning of the day.
- */
-if ( ! is_user_logged_in() ) {
-	wp_die( sprintf( '%1$s <a href="%2$s" title="%3$s">%4$s</a>',
-		esc_html__( "I'm sorry, you'll need to be logged in to use this form.", 'checkinator' ),
-		esc_url( wp_login_url( get_permalink() ) ),
-		esc_html__( 'WP Login', 'checkinator' ),
-		esc_html__( 'Log in now.', 'checkinator' )
-	) );
-}
 
 /** @var array  The list of personnel loaded from JSON */
 $personnel_arr = get_option( 'ctr_personnel_list' ) ? get_option( 'ctr_personnel_list' ) : array();
@@ -28,17 +15,17 @@ get_header(); ?>
 <form action="" id="check-in" method="POST"<?php echo $desk ? ' class="hide"' : ''; ?> novalidate="novalidate">
 
 	<fieldset id="first">
-		<label for="firstName"><?php esc_attr_e( 'First Name', 'checkinator' ) ?></label>
+		<label for="firstName"><?php esc_html_e( 'First Name', 'checkinator' ) ?></label>
 		<input type="text" name="firstName" id="firstName" minlength="2" class="text required" />
 	</fieldset>
 
 	<fieldset id="last">
-		<label for="lastName"><?php esc_attr_e( 'Last Name', 'checkinator' ) ?></label>
+		<label for="lastName"><?php esc_html_e( 'Last Name', 'checkinator' ) ?></label>
 		<input type="text" name="lastName" id="lastName" minlength="2" class="text required" />
 	</fieldset>
 
 	<fieldset id="desk">
-		<label for="personnel"><?php esc_attr_e( 'Here to See', 'checkinator' ) ?></label>
+		<label for="personnel"><?php esc_html_e( 'Here to See', 'checkinator' ) ?></label>
 		<select name="personnel" id="personnel" class="required">
 			<?php
 			/**
@@ -47,7 +34,7 @@ get_header(); ?>
 			 * a unique ID for each JSON entry and keying on that.
 			 */
 			foreach ( $personnel_arr as $staff ) : ?>
-				<option value="<?php esc_attr_e( $staff['desk'] ); ?>"><?php esc_attr_e( $staff['name'] ); ?></option>
+				<option value="<?php esc_attr_e( $staff['desk'] ); ?>"><?php esc_html_e( $staff['name'] ); ?></option>
 			<?php endforeach; ?>
 		</select>
 	</fieldset>
@@ -56,7 +43,7 @@ get_header(); ?>
 
 	<fieldset>
 		<input type="hidden" name="submitted" id="submitted" value="true" />
-		<button type="submit" class="submit"><?php esc_attr_e( 'Check In', 'checkinator' ) ?></button>
+		<button type="submit" class="submit"><?php esc_html_e( 'Check In', 'checkinator' ) ?></button>
 	</fieldset>
 
 </form>
